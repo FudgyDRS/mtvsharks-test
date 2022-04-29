@@ -16,7 +16,10 @@ contract TestContract is Ownable {
     using SafeMath for uint256;
 
     IERC721_2 public nftContract;
-    constructor(address targetContract) { nftContract = IERC721_2(targetContract); }
+    constructor(address targetContract, uint256 _minIncrement) { 
+        nftContract = IERC721_2(targetContract);
+        minIncrement = _minIncrement;
+    }
 
     bool internal locked;
     bool isPaused;
@@ -31,8 +34,9 @@ contract TestContract is Ownable {
 
     uint256 public volume;              // num of successfully traded
     uint256 public tradeVolume;         // value of successfully traded
-    uint256 public floor;               // added by the most recent listing
+    uint256 public floor;               // based off last listing/change
     uint256 public listVolume;
+    uint256 public minIncrement;
     uint256 private escrow;
     uint256 fee = 50; // of 1000
 
@@ -246,29 +250,28 @@ contract TestContract is Ownable {
     function createBid(uint256 _id) public payable tradingEnabled {
         address ownerAccount = nftContract.ownerOf(_id);
         require(ownerAccount != msg.sender, "Already NFT owner");
-        require(ownerAccount != address(0));
+        require(ownerAccount != address(0)); // not minted or burned
 
         uint256 _historyLength = history[_id].length;
+        listing memory _listing;
 
-        // create new listing if none exists
+        // create listing if none exists
         if(_historyLength == 0) {
-            listing memory _new = listing(listVolume, ownerAccount, 0, block.timestamp, 0, address(0));
-            history[_id].push(_new);
-            tradeId[listVolume] = _new;
-            tradeIdToken[listVolume] = _id;
+            _listing = listing(_id, listVolume, ownerAccount, 0, block.timestamp, 0, address(0));
+            history[_id].push(_listing);
+            tradeId[listVolume] = _listing;
             myListings[ownerAccount].push(listVolume);
             listVolume++;
-        }
+        } else { _listing = history[_id][_historyLength-1]; }
 
-        listing memory _listing = history[_id][_historyLength-1];
-        uint256 _stop = _listing.stop;
         uint256 _tradeId = _listing.tradeId;
+        require(_listing.stop != 1, "Sale ongoing");
+        require(_listing.stop != 2, "Sale disabled");
 
-        require(_stop < 2 || _stop > block.timestamp, "Auction over");
-        require(_stop != 1, "Cannot bid on fixed prices");
-
+        uint256 _bestOffer = bestOffer(_tradeId);
+        require(msg.value >= _bestOffer + minIncrement, "Min bet increase not met");
         bid[] storage _bids = bids[_tradeId];
-        require(_bids.length < 999, "Max 1000 bids per listing");
+        require(_bids.length <= 1000, "Max 1000 bids per listing");
 
         uint256 i = getBid(_tradeId, msg.sender);
         require(i != 1000, "Account bid already exists");
