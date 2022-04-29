@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { Box, Text } from "@chakra-ui/react";
 
 import { useEthers } from "../../modules/usedapp2/hooks";
-import { SharkObject } from "../../models/MTV Sharks/SharkObject";
+import { SharkObject as NFTObject } from "../../models/MTV Sharks/SharkObject";
 //import { BalanceOf, OwnerOf, TokenOfOwnerByIndex, TokenURI, TotalSupply } from "../../abi/NFT"
 import { TotalSupply } from '../../abi/mtvSharks';
 import { Card, Row, Col } from "react-bootstrap";
@@ -36,18 +36,18 @@ const TempText = styled.text`
 `;
 
 const BlockCollection: FC = () => {
-  var SharkObjects: SharkObject[];
+  var nftObjects: NFTObject[];
 
-  const [collection, setCollection] = useState<SharkObject[]>([]);
-  const [mints, setMints] = useState<SharkObject[]>([]);
-  const [bids, setBids] = useState<SharkObject[]>([]);
-  const [auctions, setAuctions] = useState<SharkObject[]>([]);
+  const [collection, setCollection] = useState<NFTObject[]>([]);
+  const [mints, setMints] = useState<NFTObject[]>([]);
+  const [bids, setBids] = useState<NFTObject[]>([]);
+  const [auctions, setAuctions] = useState<NFTObject[]>([]);
 
   const totalSupply = TotalSupply();
 
   //const tokenURI = TokenURI()
 
-  const [data, setData] = useState<SharkObject[]>([]);
+  const [data, setData] = useState<NFTObject[]>([]);
   const { account } = useEthers();
 
   useEffect(() => {

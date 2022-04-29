@@ -4,33 +4,28 @@ import { formatUnits } from "@ethersproject/units";
 import { Box, Heading, Text, } from '@chakra-ui/react';
 
 import { useEthers } from "../../modules/usedapp2/hooks";
-import { SharkObject } from "../../models/MTV Sharks/SharkObject";
+import { SharkObject as NFTObject } from "../../models/MTV Sharks/SharkObject";
 import { TotalSupply } from '../../abi/mtvSharks';
 import metadata from '../../abi/metadata.json';
 import PaginationComponent from '../PaginationComponent';
 
 const BlockRecentMints: FC = () => {
-
-  const [collection, setCollection] = useState<SharkObject[]>([]);
-  const [mints, setMints] = useState<SharkObject[]>([]);
-  const [bids, setBids] = useState<SharkObject[]>([]);
-  const [auctions, setAuctions] = useState<SharkObject[]>([]);
  
   const totalSupply = TotalSupply(); 
-  const [data, setData] = useState<SharkObject[]>([]);
+  const [data, setData] = useState<NFTObject[]>([]);
   const { account } = useEthers();
   
   
   // order is fine: indecies start ates
-  function MakeArray(data: SharkObject[], totalMinted: any) {
-    let newArray: SharkObject[] = [];
+  function MakeArray(data: NFTObject[], totalMinted: any) {
+    let newArray: NFTObject[] = [];
     for(let index=0; index<totalMinted; index++) { newArray = [data[index]].concat(newArray)}
     return newArray;
   }
   
   function RecentMints(totalSupply: any) {
     const sharkList: any = metadata;
-    const objects: SharkObject[] = sharkList;
+    const objects: NFTObject[] = sharkList;
     const totalMinted = totalSupply && formatUnits(totalSupply, 0);
     setData(MakeArray(objects, totalMinted));
   };
@@ -41,7 +36,7 @@ const BlockRecentMints: FC = () => {
     if(data.length!=0) { 
       return(<>
         <Heading>Recent Mints: </Heading>
-        <PaginationComponent sharkObjects = {data}/>
+        <PaginationComponent nftObjects = {data}/>
       </>)
     } else{ return (<><Text>Error: Data could not be loaded...</Text></>)}
   } else {

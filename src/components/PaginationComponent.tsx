@@ -9,7 +9,7 @@ import "../styles/pagination.scss";
 const renderData = (data: NFTObject[], columns: number) => {
   return window.innerWidth > 580
     ? (<SimpleGrid columns={columns} spacing={10}>{data.map((todo: any, index: any) => {
-      return <li key={index} className="item"><GenerateCard sharkObject = {data[index]} /></li>;
+      return <li key={index} className="item"><GenerateCard nftObject = {data[index]} /></li>;
     })}</SimpleGrid>)
     : (<SimpleGrid columns={3} spacingY={28}>{data.map((todo: any, index: any) => {
       return <li key={index} className="item"><GenerateTinyCard nftObject = {data[index]} /></li>;
