@@ -1,0 +1,45 @@
+.mint-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-top: 80px;
+}
+
+.input-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.price-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 4rem;
+  font-weight: 600;
+}
+
+.quantity {
+  border: 1px solid #000;
+  border-radius: 2px;
+  width: 48px;
+  height: 28px;
+  font-size: 18px;
+  text-align: center;
+  margin-right: 10px;
+
+  //hide the default button
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  appearance: textfield;
+
+  -webkit-inner-spin-button: none;
+  -webkit-outer-spin-button: none;
+  -webkit-appearance: none;
+}
+
+.mint-button-box {
+  flex-direction: column;
+  align-items: center;
+  margin: 4rem;
+}

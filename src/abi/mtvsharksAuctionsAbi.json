@@ -1,0 +1,346 @@
+[
+    {
+        "inputs"         : [ { "internalType": "uint256", "name": "_tokenId", "type": "uint256" } ],
+        "name"           : "adminCancelAuction",
+        "outputs"        : [],
+        "stateMutability": "nonpayable",
+        "type"           : "function"
+    },
+    {
+        "inputs"         : [ { "internalType": "uint256", "name": "_tradeId", "type": "uint256" } ],
+        "name"           : "adminRefundBids",
+        "outputs"        : [],
+        "stateMutability": "nonpayable",
+        "type"           : "function"
+    },
+    {
+        "inputs"         : [ { "internalType": "uint256", "name": "_tradeId", "type": "uint256" } ],
+        "name"           : "adminRefundNft",
+        "outputs"        : [],
+        "stateMutability": "nonpayable",
+        "type"           : "function"
+    },
+    {
+        "inputs"         : [ { "internalType": "address", "name": "targetContract", "type": "address" } ],
+        "stateMutability": "nonpayable",
+        "type"           : "constructor"
+    },
+    {
+        "anonymous": false,
+        "inputs"   : [
+            { "indexed": false, "internalType": "uint256", "name": "tokenId", "type": "uint256" },
+            { "indexed": false, "internalType": "uint256", "name": "tradeId", "type": "uint256" },
+            { "indexed": false, "internalType": "address", "name": "seller" , "type": "address" },
+            { "indexed": false, "internalType": "address", "name": "winner" , "type": "address" },
+            { "indexed": false, "internalType": "uint256", "name": "price"  , "type": "uint256" }
+        ],
+        "name"     : "AuctionClaimed",
+        "type"     : "event"
+    },
+    {
+        "anonymous": false,
+        "inputs"   : [
+            { "indexed": false, "internalType": "uint256", "name": "tokenId", "type": "uint256" },
+            { "indexed": false, "internalType": "uint256", "name": "tradeId", "type": "uint256" },
+            { "indexed": false, "internalType": "address", "name": "seller" , "type": "address" }
+        ],
+        "name"     : "AuctionFailure",
+        "type"     : "event"
+    },
+    {
+        "anonymous": false,
+        "inputs"   : [
+            { "indexed": false, "internalType": "uint256", "name": "tokenId", "type": "uint256" },
+            { "indexed": false, "internalType": "uint256", "name": "tradeId", "type": "uint256" },
+            { "indexed": false, "internalType": "address", "name": "account", "type": "address" },
+            { "indexed": false, "internalType": "uint256", "name": "value"  , "type": "uint256" }
+        ],
+        "name"     : "BidCreation",
+        "type"     : "event"
+    },
+    {
+        "anonymous": false,
+        "inputs"   : [
+            { "indexed": false, "internalType": "uint256", "name": "tokenId" , "type": "uint256" },
+            { "indexed": false, "internalType": "uint256", "name": "tradeId" , "type": "uint256" },
+            { "indexed": false, "internalType": "address", "name": "account" , "type": "address" },
+            { "indexed": false, "internalType": "uint256", "name": "oldValue", "type": "uint256" },
+            { "indexed": false, "internalType": "uint256", "name": "newValue", "type": "uint256" }
+        ],
+        "name"     : "BidUpdate",
+        "type"     : "event"
+    },
+    {
+        "inputs"         : [
+            { "internalType": "address", "name": "_token", "type": "address" },
+            { "internalType": "address", "name": "_to"   , "type": "address" },
+            { "internalType": "uint256", "name": "_value", "type": "uint256" },
+            { "internalType": "bool"   , "name": "NFT"   , "type": "bool"    }
+        ],
+        "name"           : "burnRdnmTkn",
+        "outputs"        : [],
+        "stateMutability": "nonpayable",
+        "type"           : "function"
+    },
+    {
+        "inputs"         : [ { "internalType": "uint256", "name": "_tokenId", "type": "uint256" } ],
+        "name"           : "cancelBid",
+        "outputs"        : [],
+        "stateMutability": "nonpayable",
+        "type"           : "function"
+    },
+    {
+        "inputs"         : [ { "internalType": "uint256", "name": "_tokenId", "type": "uint256" } ],
+        "name"           : "completeAuction",
+        "outputs"        : [],
+        "stateMutability": "nonpayable",
+        "type"           : "function"
+    },
+    {
+        "inputs"         : [ { "internalType": "uint256", "name": "_tokenId", "type": "uint256" } ],
+        "name"           : "createBid",
+        "outputs"        : [],
+        "stateMutability": "payable",
+        "type"           : "function"
+    },
+    {
+        "inputs"         : [
+            { "internalType": "uint256", "name": "_tokenId" , "type": "uint256" },
+            { "internalType": "uint256", "name": "_value"   , "type": "uint256" },
+            { "internalType": "uint256", "name": "_duration", "type": "uint256" }
+        ],
+        "name"           : "listTrade",
+        "outputs"        : [],
+        "stateMutability": "nonpayable",
+        "type"           : "function"
+    },
+    {
+        "anonymous": false,
+        "inputs"   : [
+            { "indexed": false, "internalType": "uint256", "name": "tokenId", "type": "uint256" },
+            { "indexed": false, "internalType": "uint256", "name": "tradeId", "type": "uint256" },
+            { "indexed": false, "internalType": "address", "name": "account", "type": "address" },
+            { "indexed": false, "internalType": "uint256", "name": "start"  , "type": "uint256" },
+            { "indexed": false, "internalType": "uint256", "name": "stop"   , "type": "uint256" }
+        ],
+        "name"     : "ListTrade",
+        "type"     : "event"
+    },
+    {
+        "anonymous": false,
+        "inputs"   : [
+            { "indexed": true, "internalType": "address", "name": "previousOwner", "type": "address" },
+            { "indexed": true, "internalType": "address", "name": "newOwner"     , "type": "address" }
+        ],
+        "name"     : "OwnershipTransferred",
+        "type"     : "event"
+    },
+    { "inputs": [], "name": "renounceOwnership", "outputs": [], "stateMutability": "nonpayable", "type": "function" },
+    {
+        "inputs"         : [ { "internalType": "address", "name": "newOwner", "type": "address" } ],
+        "name"           : "transferOwnership",
+        "outputs"        : [],
+        "stateMutability": "nonpayable",
+        "type"           : "function"
+    },
+    {
+        "inputs"         : [
+            { "internalType": "uint256", "name": "_tokenId", "type": "uint256" },
+            { "internalType": "uint256", "name": "_value"  , "type": "uint256" },
+            { "internalType": "bool"   , "name": "_add"    , "type": "bool"    }
+        ],
+        "name"           : "updateBid",
+        "outputs"        : [],
+        "stateMutability": "payable",
+        "type"           : "function"
+    },
+    { "inputs": [], "name": "withdrawAll", "outputs": [], "stateMutability": "nonpayable", "type": "function" },
+    {
+        "inputs"         : [ { "internalType": "uint256", "name": "_tradeId", "type": "uint256" } ],
+        "name"           : "bestOffer",
+        "outputs"        : [ { "internalType": "uint256", "name": "index", "type": "uint256" } ],
+        "stateMutability": "view",
+        "type"           : "function"
+    },
+    {
+        "inputs"         : [
+            { "internalType": "uint256", "name": "", "type": "uint256" },
+            { "internalType": "uint256", "name": "", "type": "uint256" }
+        ],
+        "name"           : "bids",
+        "outputs"        : [
+            { "internalType": "address", "name": "account", "type": "address" },
+            { "internalType": "uint256", "name": "amount" , "type": "uint256" }
+        ],
+        "stateMutability": "view",
+        "type"           : "function"
+    },
+    {
+        "inputs"         : [
+            { "internalType": "uint256", "name": "_tradeId", "type": "uint256" },
+            { "internalType": "address", "name": "_account", "type": "address" }
+        ],
+        "name"           : "getBid",
+        "outputs"        : [ { "internalType": "uint256", "name": "", "type": "uint256" } ],
+        "stateMutability": "view",
+        "type"           : "function"
+    },
+    {
+        "inputs"         : [
+            { "internalType": "uint256", "name": "_tokenId", "type": "uint256" },
+            { "internalType": "uint256", "name": "min"     , "type": "uint256" },
+            { "internalType": "uint256", "name": "max"     , "type": "uint256" }
+        ],
+        "name"           : "getHistory",
+        "outputs"        : [
+            { "internalType": "uint256[]", "name": "_tradeId", "type": "uint256[]" },
+            { "internalType": "address[]", "name": "_account", "type": "address[]" },
+            { "internalType": "uint256[]", "name": "_value"  , "type": "uint256[]" },
+            { "internalType": "uint256[]", "name": "_start"  , "type": "uint256[]" },
+            { "internalType": "uint256[]", "name": "_stop"   , "type": "uint256[]" },
+            { "internalType": "address[]", "name": "_to"     , "type": "address[]" }
+        ],
+        "stateMutability": "view",
+        "type"           : "function"
+    },
+    {
+        "inputs"         : [
+            { "internalType": "uint256", "name": "_id"   , "type": "uint256" },
+            { "internalType": "bool"   , "name": "_state", "type": "bool"    }
+        ],
+        "name"           : "getLength",
+        "outputs"        : [ { "internalType": "uint256", "name": "", "type": "uint256" } ],
+        "stateMutability": "view",
+        "type"           : "function"
+    },
+    {
+        "inputs"         : [
+            { "internalType": "address", "name": "_address", "type": "address" },
+            { "internalType": "uint256", "name": "min"     , "type": "uint256" },
+            { "internalType": "uint256", "name": "max"     , "type": "uint256" }
+        ],
+        "name"           : "getMyBids",
+        "outputs"        : [
+            { "internalType": "uint256[]", "name": "_tradeId", "type": "uint256[]" },
+            { "internalType": "uint256[]", "name": "_tokenId", "type": "uint256[]" },
+            { "internalType": "uint256[]", "name": "_index"  , "type": "uint256[]" },
+            { "internalType": "uint256[]", "name": "_amount" , "type": "uint256[]" }
+        ],
+        "stateMutability": "view",
+        "type"           : "function"
+    },
+    {
+        "inputs"         : [ { "internalType": "bool", "name": "_state", "type": "bool" } ],
+        "name"           : "getMyLength",
+        "outputs"        : [ { "internalType": "uint256", "name": "", "type": "uint256" } ],
+        "stateMutability": "view",
+        "type"           : "function"
+    },
+    {
+        "inputs"         : [
+            { "internalType": "address", "name": "_address", "type": "address" },
+            { "internalType": "uint256", "name": "min"     , "type": "uint256" },
+            { "internalType": "uint256", "name": "max"     , "type": "uint256" }
+        ],
+        "name"           : "getMyListings",
+        "outputs"        : [
+            { "internalType": "uint256[]", "name": "_tokenId", "type": "uint256[]" },
+            { "internalType": "uint256[]", "name": "_tradeId", "type": "uint256[]" },
+            { "internalType": "address[]", "name": "_account", "type": "address[]" },
+            { "internalType": "uint256[]", "name": "_value"  , "type": "uint256[]" },
+            { "internalType": "uint256[]", "name": "_start"  , "type": "uint256[]" },
+            { "internalType": "uint256[]", "name": "_stop"   , "type": "uint256[]" },
+            { "internalType": "address[]", "name": "_to"     , "type": "address[]" }
+        ],
+        "stateMutability": "view",
+        "type"           : "function"
+    },
+    {
+        "inputs"         : [
+            { "internalType": "uint256", "name": "", "type": "uint256" },
+            { "internalType": "uint256", "name": "", "type": "uint256" }
+        ],
+        "name"           : "history",
+        "outputs"        : [
+            { "internalType": "uint256", "name": "tokenId", "type": "uint256" },
+            { "internalType": "uint256", "name": "tradeId", "type": "uint256" },
+            { "internalType": "address", "name": "account", "type": "address" },
+            { "internalType": "uint256", "name": "value"  , "type": "uint256" },
+            { "internalType": "uint256", "name": "start"  , "type": "uint256" },
+            { "internalType": "uint256", "name": "stop"   , "type": "uint256" },
+            { "internalType": "address", "name": "to"     , "type": "address" }
+        ],
+        "stateMutability": "view",
+        "type"           : "function"
+    },
+    {
+        "inputs"         : [],
+        "name"           : "listVolume",
+        "outputs"        : [ { "internalType": "uint256", "name": "", "type": "uint256" } ],
+        "stateMutability": "view",
+        "type"           : "function"
+    },
+    {
+        "inputs"         : [
+            { "internalType": "address", "name": "", "type": "address" },
+            { "internalType": "uint256", "name": "", "type": "uint256" }
+        ],
+        "name"           : "myBids",
+        "outputs"        : [ { "internalType": "uint256", "name": "", "type": "uint256" } ],
+        "stateMutability": "view",
+        "type"           : "function"
+    },
+    {
+        "inputs"         : [
+            { "internalType": "address", "name": "", "type": "address" },
+            { "internalType": "uint256", "name": "", "type": "uint256" }
+        ],
+        "name"           : "myListings",
+        "outputs"        : [ { "internalType": "uint256", "name": "", "type": "uint256" } ],
+        "stateMutability": "view",
+        "type"           : "function"
+    },
+    {
+        "inputs"         : [],
+        "name"           : "nftContract",
+        "outputs"        : [ { "internalType": "contract IERC721_2", "name": "", "type": "address" } ],
+        "stateMutability": "view",
+        "type"           : "function"
+    },
+    {
+        "inputs"         : [],
+        "name"           : "owner",
+        "outputs"        : [ { "internalType": "address", "name": "", "type": "address" } ],
+        "stateMutability": "view",
+        "type"           : "function"
+    },
+    {
+        "inputs"         : [ { "internalType": "uint256", "name": "", "type": "uint256" } ],
+        "name"           : "tradeId",
+        "outputs"        : [
+            { "internalType": "uint256", "name": "tokenId", "type": "uint256" },
+            { "internalType": "uint256", "name": "tradeId", "type": "uint256" },
+            { "internalType": "address", "name": "account", "type": "address" },
+            { "internalType": "uint256", "name": "value"  , "type": "uint256" },
+            { "internalType": "uint256", "name": "start"  , "type": "uint256" },
+            { "internalType": "uint256", "name": "stop"   , "type": "uint256" },
+            { "internalType": "address", "name": "to"     , "type": "address" }
+        ],
+        "stateMutability": "view",
+        "type"           : "function"
+    },
+    {
+        "inputs"         : [],
+        "name"           : "tradeVolume",
+        "outputs"        : [ { "internalType": "uint256", "name": "", "type": "uint256" } ],
+        "stateMutability": "view",
+        "type"           : "function"
+    },
+    {
+        "inputs"         : [],
+        "name"           : "volume",
+        "outputs"        : [ { "internalType": "uint256", "name": "", "type": "uint256" } ],
+        "stateMutability": "view",
+        "type"           : "function"
+    }
+]

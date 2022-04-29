@@ -1,0 +1,64 @@
+.pageNumbers {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: left;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    
+  }
+  
+  .pageNumbers li {
+    padding: 1px;
+    border: 1px solid rgb(85, 85, 85);
+    background-color: rgb(85, 85, 85);
+    
+    color: 1px solid rgb(255, 255, 255);
+    color: white;
+    cursor: pointer;
+    border-radius: 50%;
+    margin: 3px;
+    min-width: 35px;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items:center;
+    justify-content:center;
+  }
+  
+  .pageNumbers li.active {
+    background-color: rgb(255, 255, 255);
+    color: black;
+  }
+  
+  .pageNumbers li button {
+    background-color: transparent;
+    border: none;
+    color: blueviolet;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  .pageNumbers li button:hover {
+    background-color: gray;
+    color: red;
+  }
+  .pageNumbers li button:focus {
+    outline: none;
+  }
+  
+  .loadmore {
+    padding: 1rem;
+    background-color: transparent;
+  
+    color: blue;
+    font-size: 1.2rem;
+    border: 1px solid gray;
+    cursor: pointer;
+  }
+  
+  .item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }

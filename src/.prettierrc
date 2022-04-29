@@ -1,0 +1,8 @@
+{
+  "semi": true,
+  "tabwidth": 2,
+  "printWidth": 100,
+  "signleQuote": true,
+  "trailingComma": "none",
+  "jsxBracketSameLine": true
+}

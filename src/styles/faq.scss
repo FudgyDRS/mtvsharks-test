@@ -1,0 +1,54 @@
+.title {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  color: black;
+  margin-bottom: 1.5em;
+  font-size: 2.5em;
+  font-weight: 800;
+  text-shadow: 2px 2px #ff0000;
+  @media (max-width: 900px) {
+    argin-bottom: 1.1em;
+    font-size: 2em;
+    font-weight: 600;
+  }
+}
+
+.question {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  color: Yellow;
+  font-weight: 700;
+  text-shadow: 2px 2px #ff0000;
+}
+
+.answer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  color: black;
+  font-weight: 600;
+  margin-left: 2.5em;
+  text-shadow: 1px 1px #1100ff;
+}
+
+.contest-winners {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1em;
+  color: black;
+  font-weight: 600;
+  @media (max-width: 708px) {
+    flex-direction: column;
+      align-items: center;
+      justify-content: center;
+  }
+}
+
+.name {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
