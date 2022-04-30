@@ -217,14 +217,7 @@ contract TestContract is Ownable {
         require(_listing.stop == 1, "Sale not found");
         require(nftContract.ownerOf(_tokenId) == address(this), "NFT not in escrow");
         require(msg.sender == _listing.account, "Not NFT owner");
-        _listing.stop = 2;
-
-        // Create new history and tradeId for new owner to accept static offers
-        listing memory _new = listing(_tokenId, listVolume, msg.sender, 0, block.timestamp, 0, address(0));
-        tradeId[listVolume] = _new;
-        history[_tokenId].push(_new);
-        myListings[msg.sender].push(listVolume);
-        listVolume++;
+        _listing.value = _value;
         }
     // return current best offer for NFT
     function bestOffer(uint256 _tradeId) public view returns(uint256 index) {
@@ -428,9 +421,7 @@ contract TestContract is Ownable {
         }
     function adminRefundBids(uint256 _tradeId) public admin noreentry { escrowRefund(_tradeId); }
     function adminRefundNft(uint256 _tradeId) public admin { 
-        uint256 _tokenId = tradeIdToken[_tradeId];
-        if(nftContract.ownerOf(_tokenId) == address(this)) sendNft(address(this), tradeId[_tradeId].account, _tokenId);
-
+        if(nftContract.ownerOf(tradeId[_tradeId].tokenId) == address(this)) sendNft(address(this), tradeId[_tradeId].account, tradeId[_tradeId].tokenId);
         }
     // Warning: kills escrow, only use upon porting
     function withdrawAll() public admin { require(payable(msg.sender).send(address(this).balance)); }
